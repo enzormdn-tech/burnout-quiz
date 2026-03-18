@@ -34,9 +34,9 @@
 
     /* ── Header ── */
     .page-header {
-      padding: 64px 0 48px;
+      padding: 48px 0 32px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 48px;
+      margin-bottom: 32px;
     }
 
     .page-label {
@@ -54,6 +54,11 @@
       letter-spacing: -0.02em;
       line-height: 1.2;
       margin-bottom: 16px;
+      background: linear-gradient(135deg, #1c1c1c 0%, #b0b0b0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
     }
 
     .page-sub {
@@ -65,7 +70,7 @@
 
     /* ── Ce qui se passe ── */
     .section {
-      padding: 40px 0;
+      padding: 28px 0;
       border-top: 1px solid var(--border);
     }
 
@@ -81,7 +86,7 @@
     .steps {
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 20px;
     }
 
     .step {
@@ -116,16 +121,16 @@
     .reassurance {
       background: #f3f1ee;
       border-radius: 12px;
-      padding: 24px 28px;
-      margin: 40px 0;
+      padding: 20px 24px;
+      margin: 24px 0 0;
       font-size: 15px;
-      line-height: 1.75;
+      line-height: 1.7;
       color: var(--text);
     }
 
     /* ── Calendly ── */
     .calendly-section {
-      padding: 40px 0 64px;
+      padding: 28px 0 48px;
       border-top: 1px solid var(--border);
     }
 
@@ -137,7 +142,7 @@
     }
 
     @media (min-width: 680px) {
-      .page-title { font-size: 36px; }
+      .page-title { font-size: 32px; }
     }
   </style>
 </head>
