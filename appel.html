@@ -32,11 +32,14 @@
       padding: 0 28px;
     }
 
-    /* ── Header ── */
-    .page-header {
+    /* ── Hero — tout visible sans scroll ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       padding: 48px 0 32px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 32px;
+      gap: 24px;
     }
 
     .page-label {
@@ -44,16 +47,14 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--sub);
-      margin-bottom: 14px;
       display: block;
     }
 
     .page-title {
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 400;
       letter-spacing: -0.02em;
       line-height: 1.2;
-      margin-bottom: 16px;
       background: linear-gradient(135deg, #1c1c1c 0%, #b0b0b0 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -62,16 +63,72 @@
     }
 
     .page-sub {
-      font-size: 16px;
-      line-height: 1.7;
+      font-size: 15px;
+      line-height: 1.65;
       color: var(--sub);
-      max-width: 520px;
+      max-width: 480px;
     }
 
-    /* ── Ce qui se passe ── */
-    .section {
-      padding: 28px 0;
+    /* ── Steps ── */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
       border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--sub);
+      min-width: 18px;
+    }
+
+    .step-title {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text);
+    }
+
+    /* ── Reassurance ── */
+    .reassurance {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--sub);
+      font-style: italic;
+    }
+
+    /* ── Scroll hint ── */
+    .scroll-hint {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--sub);
+      text-transform: uppercase;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(4px); }
+    }
+
+    /* ── Calendly ── */
+    .calendly-section {
+      padding: 0 0 64px;
     }
 
     .section-label {
@@ -79,66 +136,8 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--sub);
-      margin-bottom: 28px;
+      margin-bottom: 20px;
       display: block;
-    }
-
-    .steps {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .step {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-    }
-
-    .step-num {
-      font-size: 11px;
-      letter-spacing: 0.06em;
-      color: var(--sub);
-      min-width: 20px;
-      padding-top: 2px;
-    }
-
-    .step-body {}
-
-    .step-title {
-      font-size: 16px;
-      font-weight: 400;
-      margin-bottom: 6px;
-    }
-
-    .step-desc {
-      font-size: 15px;
-      line-height: 1.65;
-      color: var(--sub);
-    }
-
-    /* ── Reassurance ── */
-    .reassurance {
-      background: #f3f1ee;
-      border-radius: 12px;
-      padding: 20px 24px;
-      margin: 24px 0 0;
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--text);
-    }
-
-    /* ── Calendly ── */
-    .calendly-section {
-      padding: 28px 0 48px;
-      border-top: 1px solid var(--border);
-    }
-
-    .calendly-wrap {
-      margin-top: 28px;
-      border-radius: 12px;
-      overflow: hidden;
-      min-height: 660px;
     }
 
     @media (min-width: 680px) {
@@ -150,48 +149,35 @@
 
 <div class="container">
 
-  <header class="page-header">
+  <div class="hero">
     <span class="page-label">Appel découverte — 30 min — gratuit</span>
-    <h1 class="page-title">Ce que ton score ne dit pas encore.</h1>
-    <p class="page-sub">Un appel pour regarder ton profil ensemble — et identifier ce qui pèse vraiment, pas juste ce qui se voit.</p>
-  </header>
 
-  <section class="section">
-    <span class="section-label">Ce qui se passe pendant ces 30 minutes</span>
+    <h1 class="page-title">Ce que ton score ne dit pas encore.</h1>
+
+    <p class="page-sub">Un appel pour regarder ton profil ensemble — et identifier ce qui pèse vraiment, pas juste ce qui se voit.</p>
+
     <div class="steps">
       <div class="step">
         <span class="step-num">01</span>
-        <div class="step-body">
-          <p class="step-title">On relit ton profil ensemble</p>
-          <p class="step-desc">Pas le score brut — les patterns spécifiques à ta situation. Ce que tes réponses révèlent sur la source réelle de l'épuisement.</p>
-        </div>
+        <p class="step-title">On relit ton profil ensemble</p>
       </div>
       <div class="step">
         <span class="step-num">02</span>
-        <div class="step-body">
-          <p class="step-title">J'identifie le levier prioritaire</p>
-          <p class="step-desc">Ce qui, si tu agis dessus maintenant, change la dynamique. Une direction claire — pas une liste de conseils génériques à trier toi-même.</p>
-        </div>
+        <p class="step-title">J'identifie le levier prioritaire</p>
       </div>
       <div class="step">
         <span class="step-num">03</span>
-        <div class="step-body">
-          <p class="step-title">Tu repars avec quelque chose de concret</p>
-          <p class="step-desc">Une première action adaptée à ton niveau d'énergie actuel. Quelque chose de faisable — pas un programme à 12 semaines.</p>
-        </div>
+        <p class="step-title">Tu repars avec quelque chose de concret</p>
       </div>
     </div>
 
-    <div class="reassurance">
-      Ce n'est pas un pitch. Si on peut travailler ensemble, on en parle — honnêtement, sans pression. Si ce n'est pas le bon moment, tu repars avec de la valeur. Dans tous les cas.
-    </div>
-  </section>
+    <p class="reassurance">Pas un pitch. Si on peut travailler ensemble, on en parle — sinon tu repars avec de la valeur. Dans tous les cas.</p>
+
+    <span class="scroll-hint">↓ Choisir un créneau</span>
+  </div>
 
   <section class="calendly-section">
-    <span class="section-label">Choisir un créneau</span>
-    <div class="calendly-wrap">
-      <div class="calendly-inline-widget" data-url="https://calendly.com/contact-remidene-enzo/30min?hide_gdpr_banner=1&background_color=fafaf8&text_color=1c1c1c&primary_color=1c1c1c" style="min-width:320px;height:660px;"></div>
-    </div>
+    <div class="calendly-inline-widget" data-url="https://calendly.com/contact-remidene-enzo/30min?hide_gdpr_banner=1&background_color=fafaf8&text_color=1c1c1c&primary_color=1c1c1c" style="min-width:320px;height:660px;"></div>
   </section>
 
 </div>
