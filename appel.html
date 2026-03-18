@@ -94,12 +94,25 @@
       letter-spacing: 0.08em;
       color: var(--sub);
       min-width: 18px;
+      padding-top: 3px;
+    }
+
+    .step-body {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     .step-title {
       font-size: 15px;
       font-weight: 400;
       color: var(--text);
+    }
+
+    .step-desc {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--sub);
     }
 
     /* ── Reassurance ── */
@@ -151,24 +164,33 @@
 <div class="container">
 
   <div class="hero">
-    <span class="page-label">Appel découverte — 30 min — gratuit</span>
+    <span class="page-label">Appel découverte · 30 min · gratuit</span>
 
-    <h1 class="page-title">Ce que ton score ne dit pas encore.</h1>
+    <h1 class="page-title">30 minutes pour voir ce qui pèse — et ce qui peut changer.</h1>
 
-    <p class="page-sub">Un appel pour regarder ton profil ensemble — et identifier ce qui pèse vraiment, pas juste ce qui se voit.</p>
+    <p class="page-sub">Pas un bilan générique. Une lecture de ton profil spécifique, avec un levier concret à actionner.</p>
 
     <div class="steps">
       <div class="step">
         <span class="step-num">01</span>
-        <p class="step-title">On relit ton profil ensemble</p>
+        <div class="step-body">
+          <p class="step-title">On lit ton profil ensemble</p>
+          <p class="step-desc">Pas le score — les patterns. Ce que tes réponses révèlent sur la source exacte de l'épuisement.</p>
+        </div>
       </div>
       <div class="step">
         <span class="step-num">02</span>
-        <p class="step-title">J'identifie le levier prioritaire</p>
+        <div class="step-body">
+          <p class="step-title">J'identifie ce qui bloque vraiment</p>
+          <p class="step-desc">Un levier précis. Pas une liste de conseils — ce qui, chez toi, change la dynamique si tu agis dessus maintenant.</p>
+        </div>
       </div>
       <div class="step">
         <span class="step-num">03</span>
-        <p class="step-title">Tu repars avec quelque chose de concret</p>
+        <div class="step-body">
+          <p class="step-title">Tu repars avec une direction</p>
+          <p class="step-desc">Une action faisable cette semaine, adaptée à ton énergie actuelle. Pas un programme — une première étape.</p>
+        </div>
       </div>
     </div>
 
