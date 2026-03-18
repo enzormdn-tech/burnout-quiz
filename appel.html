@@ -198,12 +198,39 @@
   </div>
 
   <section class="calendly-section">
-    <div class="calendly-inline-widget" data-url="https://calendly.com/contact-remidene-enzo/30min?hide_gdpr_banner=1&background_color=fafaf8&text_color=1c1c1c&primary_color=1c1c1c" style="min-width:320px;height:660px;"></div>
+    <div id="calendly-widget" class="calendly-inline-widget" style="min-width:320px;height:660px;"></div>
   </section>
 
 </div>
 
 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+  // Read email + prenom from URL params (passed from resultats.html)
+  const urlParams = new URLSearchParams(window.location.search)
+  const visitorEmail = urlParams.get('e') || ''
+  const visitorName  = urlParams.get('p') || ''
+
+  // Build Calendly URL with prefill
+  let calendlyUrl = 'https://calendly.com/contact-remidene-enzo/30min?hide_gdpr_banner=1&background_color=fafaf8&text_color=1c1c1c&primary_color=1c1c1c'
+  if (visitorEmail) calendlyUrl += '&email=' + encodeURIComponent(visitorEmail)
+  if (visitorName)  calendlyUrl += '&name='  + encodeURIComponent(visitorName)
+
+  document.getElementById('calendly-widget').setAttribute('data-url', calendlyUrl)
+
+  // Listen for booking confirmation → notify n8n to set APPEL_BOOK = true in Brevo
+  window.addEventListener('message', function(e) {
+    if (e.data && e.data.event === 'calendly.event_scheduled' && visitorEmail) {
+      fetch('https://n8n-production-2438.up.railway.app/webhook/calendly-booking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event: 'invitee.created',
+          payload: { email: visitorEmail, name: visitorName }
+        })
+      }).catch(() => {})
+    }
+  })
+</script>
 
 </body>
 </html>

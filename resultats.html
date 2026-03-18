@@ -349,7 +349,7 @@
         <section class="cta-section">
           <h2 class="cta-title">Tu veux aller plus loin ?</h2>
           <p class="cta-body">30 minutes de coaching offert sur ton profil — un diagnostic précis et des actions concrètes applicables dès cette semaine.</p>
-          <a href="appel.html" class="btn-primary">Réserver mon coaching offert →</a>
+          <a href="appel.html" id="cta-appel" class="btn-primary">Réserver mon coaching offert →</a>
         </section>
       </div>
     `
@@ -385,6 +385,14 @@
     if (!data.prenom || !data.stade) { showError(); throw new Error('invalid data') }
 
     render(data)
+
+    // Pass email + prenom to appel.html so Calendly booking can be tracked
+    if (data.email) {
+      const ctaLink = document.getElementById('cta-appel')
+      if (ctaLink) {
+        ctaLink.href = `appel.html?e=${encodeURIComponent(data.email)}&p=${encodeURIComponent(data.prenom || '')}`
+      }
+    }
   } catch (e) {
     if (e.message !== 'no data' && e.message !== 'invalid data') showError()
   }
