@@ -1,5 +1,5 @@
 // ─── Config ──────────────────────────────────────────────────────────
-const WEBHOOK_URL = 'http://localhost:5678/webhook/quiz-burnout'
+const WEBHOOK_URL = 'https://n8n-production-2438.up.railway.app/webhook/quiz-burnout'
 
 // ─── Questions ───────────────────────────────────────────────────────
 // dim P = personnel (Q1-6, max 24), W = travail (Q7-11, max 20), D = retrait (Q12-13, max 8)
