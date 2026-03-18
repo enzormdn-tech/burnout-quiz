@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ton analyse burnout — Enzo Remidène</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #fafaf8;
+      --text:    #1c1c1c;
+      --sub:     #6b6b6b;
+      --border:  #e5e3df;
+      --bar-bg:  #eeece9;
+      --level-green:  #2d6a4f;
+      --level-yellow: #b5891a;
+      --level-orange: #c0622a;
+      --level-red:    #9b2226;
+    }
+
+    html, body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ── Header ── */
+    .page-header {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+
+    .page-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sub);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .page-title {
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    /* ── Score global ── */
+    .score-section {
+      margin-bottom: 48px;
+    }
+
+    .score-global {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .stade-label {
+      font-size: 17px;
+      font-weight: 400;
+    }
+
+    .score-num {
+      font-size: 13px;
+      color: var(--sub);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .bar-wrap {
+      flex: 1;
+      height: 3px;
+      background: var(--bar-bg);
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      transition: width 1s ease;
+    }
+
+    /* ── Dimensions ── */
+    .dims {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .dim {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .dim-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dim-name {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--sub);
+    }
+
+    .dim-score {
+      font-size: 11px;
+      color: var(--sub);
+    }
+
+    .dim-bar-bg {
+      width: 100%;
+      height: 2px;
+      background: var(--bar-bg);
+    }
+
+    .dim-bar-fill {
+      height: 100%;
+      background: var(--text);
+      width: 0%;
+      transition: width 1s ease;
+    }
+
+    /* ── Analyse ── */
+    .section {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sub);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .analyse-text p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .analyse-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── Action ── */
+    .action-block {
+      background: #f3f1ee;
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-top: 8px;
+    }
+
+    .action-text {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    /* ── CTA coaching ── */
+    .cta-section {
+      padding: 48px 0 64px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .cta-title {
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.35;
+    }
+
+    .cta-body {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--sub);
+      max-width: 480px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      padding: 16px 32px;
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      border-radius: 980px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      margin-top: 4px;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.82;
+      transform: translateY(-1px);
+    }
+
+    /* ── Error state ── */
+    .error-state {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+      padding: 48px 28px;
+    }
+
+    .error-state p {
+      color: var(--sub);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .error-state a {
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    /* ── Level colors ── */
+    .level-green  { color: var(--level-green);  }
+    .level-yellow { color: var(--level-yellow); }
+    .level-orange { color: var(--level-orange); }
+    .level-red    { color: var(--level-red);    }
+    .fill-green   { background: var(--level-green);  }
+    .fill-yellow  { background: var(--level-yellow); }
+    .fill-orange  { background: var(--level-orange); }
+    .fill-red     { background: var(--level-red);    }
+
+    /* ── Desktop ── */
+    @media (min-width: 680px) {
+      .page-title { font-size: 36px; }
+      .cta-title  { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+  function getLevelClass(stade) {
+    if (stade.includes('précoce'))  return 'green'
+    if (stade.includes('silencieux')) return 'yellow'
+    if (stade.includes('profond'))  return 'orange'
+    return 'red'
+  }
+
+  function render(data) {
+    const { prenom, stade, score_total, score_personnel, score_travail, score_retrait, analyse, actionLongue } = data
+    const cls = getLevelClass(stade)
+    const pctGlobal   = Math.round((score_total     / 52) * 100)
+    const pctPersonal = Math.round((score_personnel  / 24) * 100)
+    const pctWork     = Math.round((score_travail    / 20) * 100)
+    const pctRetrait  = Math.round((score_retrait    /  8) * 100)
+
+    const analyseParagraphs = analyse
+      .split(/\n\n+/)
+      .filter(p => p.trim())
+      .map(p => `<p>${p.trim()}</p>`)
+      .join('')
+
+    document.getElementById('app').innerHTML = `
+      <div class="container">
+        <header class="page-header">
+          <span class="page-label">Analyse personnalisée</span>
+          <h1 class="page-title">Bonjour ${prenom}.</h1>
+        </header>
+
+        <section class="score-section">
+          <div class="score-global">
+            <span class="stade-label level-${cls}">${stade}</span>
+            <div class="bar-wrap">
+              <div class="bar-fill fill-${cls}" id="bar-global"></div>
+            </div>
+            <span class="score-num">${score_total} / 52</span>
+          </div>
+
+          <div class="dims">
+            <div class="dim">
+              <div class="dim-head">
+                <span class="dim-name">Épuisement personnel</span>
+                <span class="dim-score">${score_personnel} / 24</span>
+              </div>
+              <div class="dim-bar-bg"><div class="dim-bar-fill" id="bar-p"></div></div>
+            </div>
+            <div class="dim">
+              <div class="dim-head">
+                <span class="dim-name">Épuisement lié au travail</span>
+                <span class="dim-score">${score_travail} / 20</span>
+              </div>
+              <div class="dim-bar-bg"><div class="dim-bar-fill" id="bar-w"></div></div>
+            </div>
+            <div class="dim">
+              <div class="dim-head">
+                <span class="dim-name">Retrait & détachement</span>
+                <span class="dim-score">${score_retrait} / 8</span>
+              </div>
+              <div class="dim-bar-bg"><div class="dim-bar-fill" id="bar-d"></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <span class="section-label">Ce que révèlent tes réponses</span>
+          <div class="analyse-text">${analyseParagraphs}</div>
+        </section>
+
+        <section class="section">
+          <span class="section-label">Une action concrète pour toi</span>
+          <div class="action-block">
+            <p class="action-text">${actionLongue}</p>
+          </div>
+        </section>
+
+        <section class="cta-section">
+          <h2 class="cta-title">Tu veux aller plus loin ?</h2>
+          <p class="cta-body">Un appel de 30 minutes pour regarder ensemble ce que révèle ton profil — et ce qui bloque vraiment. Sans engagement.</p>
+          <a href="mailto:contact@remidene-enzo.com?subject=Je veux aller plus loin — quiz burnout" class="btn-primary">Réserver un appel gratuit →</a>
+        </section>
+      </div>
+    `
+
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        document.getElementById('bar-global').style.width = pctGlobal + '%'
+        document.getElementById('bar-p').style.width = pctPersonal + '%'
+        document.getElementById('bar-w').style.width = pctWork + '%'
+        document.getElementById('bar-d').style.width = pctRetrait + '%'
+      }, 80)
+    })
+  }
+
+  function showError() {
+    document.getElementById('app').innerHTML = `
+      <div class="error-state">
+        <p>Cette page nécessite un lien personnalisé.<br>Fais le quiz pour obtenir ton analyse.</p>
+        <a href="index.html">← Revenir au quiz</a>
+      </div>
+    `
+  }
+
+  try {
+    const params = new URLSearchParams(window.location.search)
+    const raw = params.get('d')
+    if (!raw) { showError(); throw new Error('no data') }
+
+    // base64url → standard base64
+    const b64 = raw.replace(/-/g, '+').replace(/_/g, '/')
+    const data = JSON.parse(atob(b64))
+
+    if (!data.prenom || !data.stade) { showError(); throw new Error('invalid data') }
+
+    render(data)
+  } catch (e) {
+    if (e.message !== 'no data' && e.message !== 'invalid data') showError()
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnostic Burnout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Screen 1: Intro -->
+  <div id="screen-intro" class="screen active">
+    <div class="container">
+      <div class="intro-content">
+        <p class="intro-hook">
+          Tu fonctionnes encore.<br>
+          Mais quelque chose a changé.
+        </p>
+        <p class="intro-body">
+          Ce test ne te dira pas que tu es fatigué.<br>
+          Tu le sais déjà.
+        </p>
+        <p class="intro-body">
+          Il te dira exactement où tu en es — et ce que tu peux faire maintenant, concrètement.
+        </p>
+        <div class="intro-what">
+          <p class="intro-what-label">Ce que tu reçois</p>
+          <ul class="intro-list">
+            <li>Ton stade de burnout sur 3 dimensions</li>
+            <li>Une analyse sur mesure</li>
+            <li>1 action concrète adaptée à ton profil</li>
+          </ul>
+        </div>
+        <div class="intro-what">
+          <p class="intro-what-label">Ce que ce test mesure</p>
+          <ul class="intro-list">
+            <li>Épuisement personnel</li>
+            <li>Épuisement lié au travail</li>
+            <li>Retrait et déconnexion</li>
+          </ul>
+        </div>
+        <div class="intro-meta">
+          <span>Copenhagen Burnout Inventory — outil validé, utilisé en recherche clinique</span>
+          <span class="sep">·</span>
+          <span>13 questions · 4 minutes</span>
+        </div>
+        <p class="intro-disclaimer">
+          Outil d'auto-évaluation uniquement. Ne constitue pas un diagnostic clinique. En cas de détresse sévère, consulte un professionnel de santé.
+        </p>
+        <button id="btn-start" class="btn-primary">Commencer le diagnostic</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 2: Quiz -->
+  <div id="screen-quiz" class="screen">
+    <div class="progress-wrap">
+      <div id="progress-bar" class="progress-bar"></div>
+    </div>
+    <div class="container">
+      <div class="quiz-content">
+        <span id="question-counter" class="question-counter">1 / 13</span>
+        <div id="question-wrapper" class="question-wrapper">
+          <p id="question-text" class="question-text"></p>
+          <div id="answers" class="answers"></div>
+        </div>
+        <button id="btn-back" class="btn-back">← Précédente</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 3: Teaser -->
+  <div id="screen-teaser" class="screen">
+    <div class="container">
+      <div class="teaser-content">
+
+        <h2 class="teaser-title">Votre diagnostic est prêt.</h2>
+
+        <div id="level-badge" class="level-badge"></div>
+
+        <div class="dimensions">
+          <div class="dimension">
+            <div class="dim-header">
+              <span class="dim-label">Épuisement personnel</span>
+              <span class="dim-score" id="dim-personal-score"></span>
+            </div>
+            <div class="dim-bar-bg">
+              <div class="dim-bar-fill" id="dim-personal-fill"></div>
+            </div>
+          </div>
+          <div class="dimension">
+            <div class="dim-header">
+              <span class="dim-label">Épuisement au travail</span>
+              <span class="dim-score" id="dim-work-score"></span>
+            </div>
+            <div class="dim-bar-bg">
+              <div class="dim-bar-fill" id="dim-work-fill"></div>
+            </div>
+          </div>
+          <div class="dimension locked">
+            <div class="dim-header">
+              <span class="dim-label">Retrait</span>
+              <span class="dim-score locked-score">?</span>
+            </div>
+            <div class="dim-bar-bg">
+              <div class="dim-bar-fill locked-fill" style="width: 55%"></div>
+            </div>
+            <span class="locked-hint">Disponible dans l'analyse complète</span>
+          </div>
+        </div>
+
+        <div class="teaser-summary-block">
+          <p id="teaser-text" class="teaser-text"></p>
+        </div>
+
+        <div class="email-capture">
+          <p class="email-label">
+            Recevez l'analyse complète — les 3 dimensions, vos signaux spécifiques et une action concrète adaptée à votre profil.
+          </p>
+          <div class="email-fields">
+            <input type="text" id="prenom-input" class="email-input" placeholder="Votre prénom" autocomplete="given-name">
+            <input type="email" id="email-input" class="email-input" placeholder="votre@email.com" autocomplete="email">
+            <button id="btn-submit-email" class="btn-primary btn-full">Recevoir mon analyse →</button>
+          </div>
+          <p class="email-legal">Aucun spam. Désinscription en un clic.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 4: Confirmation -->
+  <div id="screen-confirm" class="screen">
+    <div class="container">
+      <div class="confirm-content">
+        <p class="confirm-main">C'est envoyé.</p>
+        <p class="confirm-sub">Vérifie ta boîte mail — et les spams, au cas où.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
