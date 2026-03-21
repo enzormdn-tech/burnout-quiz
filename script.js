@@ -191,7 +191,7 @@ document.getElementById('btn-submit-email').addEventListener('click', () => {
   }
   prenomInput.style.borderColor = ''
 
-  if (!email || !email.includes('@')) {
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     emailInput.style.borderColor = '#c0622a'
     emailInput.focus()
     return
