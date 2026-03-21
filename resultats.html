@@ -280,18 +280,22 @@
   }
 
   function render(data) {
-    const { prenom, stade, score_total, score_personnel, score_travail, score_retrait, analyse, actionLongue } = data
-    const cls = getLevelClass(stade)
+    const {
+      prenom, stade,
+      score_total = 0, score_personnel = 0, score_travail = 0, score_retrait = 0,
+      analyse = '', actionLongue = ''
+    } = data
+    const cls = getLevelClass(stade || '')
     const pctGlobal   = Math.round((score_total     / 52) * 100)
     const pctPersonal = Math.round((score_personnel  / 24) * 100)
     const pctWork     = Math.round((score_travail    / 20) * 100)
     const pctRetrait  = Math.round((score_retrait    /  8) * 100)
 
-    const analyseParagraphs = analyse
+    const analyseParagraphs = (analyse || '')
       .split(/\n\n+/)
       .filter(p => p.trim())
       .map(p => `<p>${esc(p.trim())}</p>`)
-      .join('')
+      .join('') || '<p>Analyse non disponible.</p>'
 
     document.getElementById('app').innerHTML = `
       <div class="container">

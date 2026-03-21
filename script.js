@@ -29,11 +29,13 @@ const SCALE = [
 
 // ─── State ───────────────────────────────────────────────────────────
 const state = {
-  current: 0,
-  answers: [],
-  scores:  null,
-  prenom:  '',
-  email:   '',
+  current:     0,
+  answers:     [],
+  scores:      null,
+  prenom:      '',
+  email:       '',
+  answering:   false,
+  submitted:   false,
 }
 
 // ─── DOM refs ────────────────────────────────────────────────────────
@@ -56,6 +58,7 @@ function showScreen(name) {
   requestAnimationFrame(() => {
     requestAnimationFrame(() => target.classList.add('visible'))
   })
+  document.querySelector('.progress-wrap').style.display = name === 'quiz' ? 'block' : 'none'
   window.scrollTo(0, 0)
 }
 
@@ -124,11 +127,15 @@ function renderQuestion(index) {
 }
 
 function onAnswer(index, value, btn) {
+  if (state.answering) return
+  state.answering = true
+
   document.querySelectorAll('.answer-btn').forEach(b => b.classList.remove('selected'))
   btn.classList.add('selected')
   state.answers[index] = value
 
   setTimeout(() => {
+    state.answering = false
     if (index + 1 < QUESTIONS.length) {
       state.current = index + 1
       renderQuestion(state.current)
@@ -197,6 +204,9 @@ document.getElementById('btn-submit-email').addEventListener('click', () => {
     return
   }
   emailInput.style.borderColor = ''
+
+  if (state.submitted) return
+  state.submitted = true
 
   state.prenom = prenom
   state.email  = email
