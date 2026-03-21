@@ -291,11 +291,22 @@
     const pctWork     = Math.round((score_travail    / 20) * 100)
     const pctRetrait  = Math.round((score_retrait    /  8) * 100)
 
-    const analyseParagraphs = (analyse || '')
+    function stripMd(str) {
+      return (str || '')
+        .replace(/\*\*([^*]*)\*\*/g, '$1')
+        .replace(/\*([^*]*)\*/g, '$1')
+        .replace(/^---+$/gm, '')
+        .replace(/^#+\s*/gm, '')
+        .trim()
+    }
+
+    const analyseParagraphs = stripMd(analyse)
       .split(/\n\n+/)
       .filter(p => p.trim())
       .map(p => `<p>${esc(p.trim())}</p>`)
       .join('') || '<p>Analyse non disponible.</p>'
+
+    const cleanActionLongue = stripMd(actionLongue)
 
     document.getElementById('app').innerHTML = `
       <div class="container">
@@ -346,7 +357,7 @@
         <section class="section">
           <span class="section-label">Une action concrète pour toi</span>
           <div class="action-block">
-            <p class="action-text">${esc(actionLongue)}</p>
+            <p class="action-text">${esc(cleanActionLongue)}</p>
           </div>
         </section>
 
