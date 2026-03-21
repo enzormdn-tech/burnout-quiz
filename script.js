@@ -1,5 +1,13 @@
 // ─── Config ──────────────────────────────────────────────────────────
-const WEBHOOK_URL = 'https://n8n-production-2438.up.railway.app/webhook/quiz-burnout'
+const WEBHOOK_URL      = 'https://n8n-production-2438.up.railway.app/webhook/quiz-burnout'
+const PING_URL         = 'https://n8n-production-2438.up.railway.app/webhook/quiz-burnout-ping'
+
+function ping(event, question) {
+  const data = JSON.stringify({ event, question, total: QUESTIONS.length })
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon(PING_URL, new Blob([data], { type: 'application/json' }))
+  }
+}
 
 // ─── Questions ───────────────────────────────────────────────────────
 // dim P = personnel (Q1-6, max 24), W = travail (Q7-11, max 20), D = retrait (Q12-13, max 8)
@@ -124,6 +132,7 @@ function renderQuestion(index) {
   })
 
   document.getElementById('btn-back').disabled = index === 0
+  ping('question_view', index + 1)
 }
 
 function onAnswer(index, value, btn) {
@@ -148,6 +157,7 @@ function onAnswer(index, value, btn) {
 // ─── Teaser ───────────────────────────────────────────────────────────
 function onQuizComplete() {
   state.scores = calcScores()
+  ping('quiz_complete', QUESTIONS.length)
   showScreen('teaser')
   renderTeaser()
 }
@@ -211,6 +221,7 @@ document.getElementById('btn-submit-email').addEventListener('click', () => {
   state.prenom = prenom
   state.email  = email
 
+  ping('email_submitted', QUESTIONS.length)
   sendWebhook()
   showScreen('confirm')
 })
