@@ -1,6 +1,6 @@
 // ─── Config ──────────────────────────────────────────────────────────
-const WEBHOOK_URL      = 'https://n8n-production-2438.up.railway.app/webhook/quiz-burnout'
-const PING_URL         = 'https://n8n-production-2438.up.railway.app/webhook/quiz-burnout-ping'
+const WEBHOOK_URL      = 'https://enzo-os.vercel.app/api/quiz'
+const PING_URL         = 'https://enzo-os.vercel.app/api/quiz'
 
 function ping(event, question) {
   const data = JSON.stringify({ event, question, total: QUESTIONS.length })
