@@ -82,32 +82,32 @@
 | API-01 | Phase 2 | Pending |
 | API-02 | Phase 2 | Pending |
 | API-03 | Phase 2 | Pending |
-| API-04 | Phase 3 | Pending |
-| API-05 | Phase 3 | Pending |
-| API-06 | Phase 3 | Pending |
 | API-07 | Phase 2 | Pending |
-| API-08 | Phase 3 | Pending |
-| CLIENT-01 | Phase 4 | Pending |
-| CLIENT-02 | Phase 4 | Pending |
-| CLIENT-03 | Phase 4 | Pending |
+| CLIENT-01 | Phase 3 | Pending |
+| CLIENT-02 | Phase 3 | Pending |
+| CLIENT-03 | Phase 3 | Pending |
 | CLIENT-04 | Phase 4 | Pending |
 | CLIENT-05 | Phase 4 | Pending |
 | CLIENT-06 | Phase 4 | Pending |
-| DASH-01 | Phase 5 | Pending |
-| DASH-02 | Phase 5 | Pending |
-| DASH-03 | Phase 5 | Pending |
-| DASH-04 | Phase 5 | Pending |
-| DASH-05 | Phase 5 | Pending |
-| ANAL-01 | Phase 6 | Pending |
-| ANAL-02 | Phase 6 | Pending |
-| ANAL-03 | Phase 6 | Pending |
-| ANAL-04 | Phase 6 | Pending |
+| API-04 | Phase 5 | Pending |
+| API-05 | Phase 5 | Pending |
+| API-06 | Phase 5 | Pending |
+| API-08 | Phase 5 | Pending |
+| DASH-01 | Phase 6 | Pending |
+| DASH-04 | Phase 6 | Pending |
+| DASH-05 | Phase 6 | Pending |
+| DASH-02 | Phase 7 | Pending |
+| DASH-03 | Phase 7 | Pending |
+| ANAL-01 | Phase 8 | Pending |
+| ANAL-03 | Phase 8 | Pending |
+| ANAL-02 | Phase 9 | Pending |
+| ANAL-04 | Phase 9 | Pending |
 
 **Coverage:**
-- v1 requirements: 29 total
-- Mapped to phases: 29
-- Unmapped: 0 ✓
+- v1 requirements: 28 total
+- Mapped to phases: 28
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-06*
-*Last updated: 2026-04-06 after initial definition*
+*Last updated: 2026-04-06 after roadmap creation (9-phase structure)*
