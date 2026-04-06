@@ -211,7 +211,7 @@
   const visitorName  = urlParams.get('p') || ''
 
   // Build Calendly URL with prefill
-  let calendlyUrl = 'https://calendly.com/contact-remidene-enzo/30min?hide_gdpr_banner=1&background_color=fafaf8&text_color=1c1c1c&primary_color=1c1c1c'
+  let calendlyUrl = 'https://rdv.remidene-enzo.com?hide_gdpr_banner=1&background_color=fafaf8&text_color=1c1c1c&primary_color=1c1c1c'
   if (visitorEmail) calendlyUrl += '&email=' + encodeURIComponent(visitorEmail)
   if (visitorName)  calendlyUrl += '&name='  + encodeURIComponent(visitorName)
 
